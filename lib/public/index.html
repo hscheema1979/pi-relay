@@ -9,13 +9,13 @@
 <meta name="theme-color" content="#2F2E2B">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Claude Relay</title>
+<title>Pi Relay</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=Styrene+A+Web:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xterm/xterm@5/css/xterm.min.css">
 <script>
-(function(){try{var k="claude-relay-theme-vars",v=localStorage.getItem(k);if(!v)return;var o=JSON.parse(v),r=document.documentElement,p;for(p in o)r.style.setProperty(p,o[p]);var vt=localStorage.getItem(k.replace("-vars","-variant"));if(vt==="light"){r.classList.add("light-theme");r.classList.remove("dark-theme")}else{r.classList.add("dark-theme");r.classList.remove("light-theme")}var m=document.querySelector('meta[name="theme-color"]');if(m&&o["--bg"])m.setAttribute("content",o["--bg"])}catch(e){}})();
+(function(){try{var k="pi-relay-theme-vars",v=localStorage.getItem(k);if(!v)return;var o=JSON.parse(v),r=document.documentElement,p;for(p in o)r.style.setProperty(p,o[p]);var vt=localStorage.getItem(k.replace("-vars","-variant"));if(vt==="light"){r.classList.add("light-theme");r.classList.remove("dark-theme")}else{r.classList.add("dark-theme");r.classList.remove("light-theme")}var m=document.querySelector('meta[name="theme-color"]');if(m&&o["--bg"])m.setAttribute("content",o["--bg"])}catch(e){}})();
 </script>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -37,7 +37,7 @@
         <div id="project-list"></div>
       </div>
       <div id="project-hint" class="hidden">
-        <span class="project-hint-text">Run <code>npx claude-relay</code> in other directories to add more projects.</span>
+        <span class="project-hint-text">Run <code>npx pi-relay</code> in other directories to add more projects.</span>
         <button id="project-hint-dismiss" type="button" aria-label="Dismiss"><i data-lucide="x"></i></button>
       </div>
     </nav>
@@ -83,11 +83,11 @@
     </div>
     <div id="sidebar-footer">
       <button id="sidebar-footer-btn">
-        <span class="footer-btn-label"><svg class="footer-mascot" viewBox="0 0 12 12" width="16" height="16"><rect x="0" y="0" width="12" height="12" rx="2" fill="#3E3C37"/><rect x="5" y="0" width="1" height="1" fill="#6D6860"/><rect x="6" y="0" width="1" height="1" fill="#6D6860"/><rect x="5" y="1" width="1" height="1" fill="#6D6860"/><rect x="6" y="1" width="1" height="1" fill="#6D6860"/><rect x="2" y="2" width="8" height="2" fill="#908B81"/><rect x="2" y="4" width="1" height="2" fill="#908B81"/><rect x="3" y="4" width="1" height="2" fill="#262522"/><rect x="4" y="4" width="4" height="2" fill="#908B81"/><rect x="8" y="4" width="1" height="2" fill="#262522"/><rect x="9" y="4" width="1" height="2" fill="#908B81"/><rect x="0" y="6" width="12" height="2" fill="#908B81"/><rect x="2" y="8" width="8" height="2" fill="#908B81"/><rect x="2" y="10" width="1" height="2" fill="#908B81"/><rect x="4" y="10" width="1" height="2" fill="#908B81"/><rect x="7" y="10" width="1" height="2" fill="#908B81"/><rect x="9" y="10" width="1" height="2" fill="#908B81"/></svg> Claude Relay <span id="footer-version" class="footer-version"></span></span>
+        <span class="footer-btn-label"><svg class="footer-mascot" viewBox="0 0 12 12" width="16" height="16"><rect x="0" y="0" width="12" height="12" rx="2" fill="#3E3C37"/><rect x="5" y="0" width="1" height="1" fill="#6D6860"/><rect x="6" y="0" width="1" height="1" fill="#6D6860"/><rect x="5" y="1" width="1" height="1" fill="#6D6860"/><rect x="6" y="1" width="1" height="1" fill="#6D6860"/><rect x="2" y="2" width="8" height="2" fill="#908B81"/><rect x="2" y="4" width="1" height="2" fill="#908B81"/><rect x="3" y="4" width="1" height="2" fill="#262522"/><rect x="4" y="4" width="4" height="2" fill="#908B81"/><rect x="8" y="4" width="1" height="2" fill="#262522"/><rect x="9" y="4" width="1" height="2" fill="#908B81"/><rect x="0" y="6" width="12" height="2" fill="#908B81"/><rect x="2" y="8" width="8" height="2" fill="#908B81"/><rect x="2" y="10" width="1" height="2" fill="#908B81"/><rect x="4" y="10" width="1" height="2" fill="#908B81"/><rect x="7" y="10" width="1" height="2" fill="#908B81"/><rect x="9" y="10" width="1" height="2" fill="#908B81"/></svg> Pi Relay <span id="footer-version" class="footer-version"></span></span>
         <i data-lucide="ellipsis" style="width:14px;height:14px"></i>
       </button>
       <div id="sidebar-footer-menu" class="hidden">
-        <a class="sidebar-menu-item" href="https://github.com/chadbyte/claude-relay" target="_blank" rel="noopener">
+        <a class="sidebar-menu-item" href="https://github.com/chadbyte/pi-relay" target="_blank" rel="noopener">
           <i data-lucide="star"></i> <span>Star on GitHub</span>
         </a>
         <button class="sidebar-menu-item" id="footer-theme">
@@ -105,7 +105,7 @@
   <div id="sidebar-overlay"></div>
   <div id="app">
     <div id="update-banner" class="hidden">
-      <span class="update-banner-text"><i data-lucide="arrow-up-circle"></i> A new version of Claude Relay is available: <strong id="update-version"></strong></span>
+      <span class="update-banner-text"><i data-lucide="arrow-up-circle"></i> A new version of Pi Relay is available: <strong id="update-version"></strong></span>
       <button id="update-now">Update now</button>
       <button id="update-how" title="Manual update instructions">?</button>
       <button id="update-banner-close" aria-label="Dismiss"><i data-lucide="x"></i></button>
@@ -189,8 +189,8 @@
           <button id="usage-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
         </div>
         <div class="usage-panel-body">
-          <a href="https://claude.ai/settings/usage" target="_blank" rel="noopener" class="usage-external-link">
-            <span>Check plan usage on claude.ai</span>
+          <a href="https://#" target="_blank" rel="noopener" class="usage-external-link">
+            <span>Check usage</span>
             <i data-lucide="external-link"></i>
           </a>
           <div class="usage-divider"></div>
@@ -270,7 +270,7 @@
             <span class="context-mini-label" id="context-mini-label">0%</span>
           </div>
           <div id="image-preview-bar"></div>
-          <textarea id="input" rows="1" placeholder="Message Claude Code..." enterkeyhint="send" dir="auto"></textarea>
+          <textarea id="input" rows="1" placeholder="Message Pi Agent..." enterkeyhint="send" dir="auto"></textarea>
           <div id="input-bottom">
             <div id="attach-wrap">
               <button id="attach-btn" type="button" aria-label="Attach"><i data-lucide="plus"></i></button>
