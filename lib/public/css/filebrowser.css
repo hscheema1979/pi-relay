@@ -1075,20 +1075,15 @@
   border-radius: 12px;
 }
 
-/* --- File Editor (CodeMirror) --- */
+/* --- File Editor (Ace) --- */
 #file-editor-wrap {
   flex: 1;
+  position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
 #file-editor-wrap.hidden {
   display: none;
-}
-
-#file-editor-wrap .cm-editor {
-  height: 100%;
 }
 
 #file-viewer.editing .file-viewer-body {
@@ -1096,7 +1091,7 @@
 }
 
 #file-viewer.editing #file-editor-wrap {
-  display: flex;
+  display: block;
 }
 
 .file-viewer-btn.edit-active {
