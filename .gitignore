@@ -1,0 +1,12 @@
+node_modules/
+*.log
+logs/
+.DS_Store
+config/*.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+.npm
+claude-relay-*.tar.gz

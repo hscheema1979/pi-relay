@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  ultra-chat-relay:
+    build: .
+    container_name: ultra-chat-relay
+    restart: unless-stopped
+    ports:
+      - "3002:3002"
+    volumes:
+      # Mount relay config directory
+      - ./config:/data/.claude-relay
+
+      # Mount user home directory for workspace access
+      - /home/ubuntu:/workspace/ubuntu:rw
+      - /home/ubuntu/projects:/workspace/projects:rw
+      - /home/ubuntu/hscheema1979:/workspace/hscheema1979:rw
+      - /home/ubuntu/hscheema1979/myhealthteam:/workspace/myhealthteam:rw
+
+      # Mount relay code for development (optional, comment out for production)
+      - ./:/relay:ro
+
+    command: ["node", "bin/cli.js", "--port", "3002", "--headless", "--pin", "000000", "--dangerously-skip-permissions"]
+
+    environment:
+      - CLAUDE_RELAY_HOME=/data/.claude-relay
+      - CLAUDECODE=
+      - NODE_ENV=production
+      - RELAY_PORT=3002
+      - RELAY_PIN=000000
+      - RELAY_DANGEROUSLY_SKIP_PERMISSIONS=true
+
+    networks:
+      - ultra-chat-network
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3002/info', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  ultra-chat-network:
+    driver: bridge
