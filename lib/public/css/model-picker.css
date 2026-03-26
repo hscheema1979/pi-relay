@@ -1,4 +1,6 @@
 /* Model Picker Modal */
+#model-picker-modal.hidden { display: none; }
+
 .model-picker-dialog {
   max-width: 480px;
   width: 90vw;
