@@ -34,7 +34,7 @@
 
 .model-picker-header button:hover {
   color: var(--text);
-  background: var(--bg-hover);
+  background: var(--bg-alt);
 }
 
 .model-picker-body {
@@ -60,7 +60,7 @@
 
 .model-picker-provider-row select {
   flex: 1;
-  background: var(--bg-input);
+  background: var(--input-bg);
   border: 1px solid var(--border);
   border-radius: 8px;
   color: var(--text);
@@ -77,7 +77,7 @@
 
 .model-picker-search-row input {
   width: 100%;
-  background: var(--bg-input);
+  background: var(--input-bg);
   border: 1px solid var(--border);
   border-radius: 8px;
   color: var(--text);
@@ -119,11 +119,11 @@
 }
 
 .model-picker-item:hover {
-  background: var(--bg-hover);
+  background: var(--bg-alt);
 }
 
 .model-picker-item.active {
-  background: var(--accent-bg, rgba(218, 119, 86, 0.12));
+  background: var(--accent-bg);
   color: var(--accent);
 }
 
