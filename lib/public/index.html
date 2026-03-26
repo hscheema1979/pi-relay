@@ -447,6 +447,27 @@
   </div>
 </div>
 
+<!-- Model Picker Modal -->
+<div id="model-picker-modal" class="hidden">
+  <div class="confirm-backdrop"></div>
+  <div class="confirm-dialog model-picker-dialog">
+    <div class="model-picker-header">
+      <span class="model-picker-title">Select Model</span>
+      <button id="model-picker-close" aria-label="Close"><i data-lucide="x"></i></button>
+    </div>
+    <div class="model-picker-body">
+      <div class="model-picker-provider-row">
+        <label for="model-picker-provider">Provider</label>
+        <select id="model-picker-provider"></select>
+      </div>
+      <div class="model-picker-search-row">
+        <input id="model-picker-search" type="text" placeholder="Filter models..." autocomplete="off" spellcheck="false" />
+      </div>
+      <div id="model-picker-list" class="model-picker-list"></div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/marked@14/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
