@@ -706,9 +706,11 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 0;
-  min-width: 220px;
+  min-width: 280px;
+  max-width: 340px;
   max-height: 70vh;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 8px 32px rgba(var(--shadow-rgb), 0.5);
   z-index: 200;
   opacity: 0;
@@ -721,6 +723,65 @@
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+
+.theme-picker-search {
+  padding: 10px 12px 6px;
+}
+
+.theme-picker-search input {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 12px;
+  padding: 6px 10px;
+  outline: none;
+  font-family: inherit;
+}
+
+.theme-picker-search input:focus {
+  border-color: var(--accent);
+}
+
+.theme-picker-search input::placeholder {
+  color: var(--text-dimmer);
+}
+
+.theme-picker-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 0 12px 8px;
+}
+
+.theme-picker-tab {
+  flex: 1;
+  padding: 4px 0;
+  border: none;
+  background: none;
+  color: var(--text-dimmer);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.theme-picker-tab:hover {
+  color: var(--text-muted);
+  background: rgba(var(--overlay-rgb), 0.04);
+}
+
+.theme-picker-tab.active {
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.theme-picker-list {
+  overflow-y: auto;
+  flex: 1;
+  padding-bottom: 8px;
 }
 
 .theme-picker-header {
@@ -738,6 +799,13 @@
 
 .theme-picker-section {
   padding-bottom: 4px;
+}
+
+.theme-picker-empty {
+  padding: 20px 14px;
+  text-align: center;
+  color: var(--text-dimmer);
+  font-size: 12px;
 }
 
 .theme-picker-item {
@@ -790,5 +858,34 @@
 
 .theme-picker-item.active .theme-picker-check {
   opacity: 1;
+}
+
+.theme-pair-toggle {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+.theme-variant-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  opacity: 0.4;
+  transition: opacity 0.15s, background 0.15s;
+  line-height: 1;
+}
+
+.theme-variant-btn:hover {
+  opacity: 0.8;
+  background: rgba(var(--overlay-rgb), 0.08);
+}
+
+.theme-variant-btn.active {
+  opacity: 1;
+  background: var(--accent-bg);
 }
 
