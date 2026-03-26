@@ -1074,3 +1074,42 @@
   animation: message-blink 0.5s ease 3;
   border-radius: 12px;
 }
+
+/* --- File Editor (CodeMirror) --- */
+#file-editor-wrap {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#file-editor-wrap.hidden {
+  display: none;
+}
+
+#file-editor-wrap .cm-editor {
+  height: 100%;
+}
+
+#file-viewer.editing .file-viewer-body {
+  display: none;
+}
+
+#file-viewer.editing #file-editor-wrap {
+  display: flex;
+}
+
+.file-viewer-btn.edit-active {
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.file-viewer-btn.unsaved {
+  color: var(--warning, #e5a822);
+  animation: pulse-unsaved 1.5s ease infinite;
+}
+
+@keyframes pulse-unsaved {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

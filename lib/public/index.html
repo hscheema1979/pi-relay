@@ -296,10 +296,13 @@
       <span class="file-viewer-path" id="file-viewer-path"></span>
       <button class="file-viewer-btn hidden" id="file-viewer-render" title="Toggle rendered view"><i data-lucide="book-open"></i></button>
       <button class="file-viewer-btn hidden" id="file-viewer-history" title="Edit history"><i data-lucide="clock"></i></button>
+      <button class="file-viewer-btn" id="file-viewer-edit" title="Edit file"><i data-lucide="pencil"></i></button>
+      <button class="file-viewer-btn hidden" id="file-viewer-save" title="Save (Ctrl+S)"><i data-lucide="save"></i></button>
       <button class="file-viewer-btn" id="file-viewer-copy" title="Copy contents"><i data-lucide="copy"></i></button>
       <button class="file-viewer-btn" id="file-viewer-close" title="Close"><i data-lucide="x"></i></button>
     </div>
     <div class="file-viewer-body" id="file-viewer-body"></div>
+    <div id="file-editor-wrap" class="hidden"></div>
   </div>
   <div id="terminal-container" class="hidden">
     <div class="terminal-header">
@@ -469,6 +472,30 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/marked@14/marked.min.js"></script>
+<script type="module" id="codemirror-loader">
+// Lazy-load CodeMirror 6 only when edit mode is first activated
+window._loadCodeMirror = async function() {
+  if (window._cm) return window._cm;
+  const [{EditorView, basicSetup}, {EditorState}, {keymap}, {indentWithTab},
+         {javascript}, {python}, {html}, {css}, {json}, {markdown},
+         {oneDark}] = await Promise.all([
+    import("https://esm.sh/@codemirror/basic-setup@0.20.0"),
+    import("https://esm.sh/@codemirror/state@6"),
+    import("https://esm.sh/@codemirror/view@6"),
+    import("https://esm.sh/@codemirror/commands@6"),
+    import("https://esm.sh/@codemirror/lang-javascript@6"),
+    import("https://esm.sh/@codemirror/lang-python@6"),
+    import("https://esm.sh/@codemirror/lang-html@6"),
+    import("https://esm.sh/@codemirror/lang-css@6"),
+    import("https://esm.sh/@codemirror/lang-json@6"),
+    import("https://esm.sh/@codemirror/lang-markdown@6"),
+    import("https://esm.sh/@codemirror/theme-one-dark@6"),
+  ]);
+  window._cm = { EditorView, EditorState, basicSetup, keymap, indentWithTab,
+                  javascript, python, html, css, json, markdown, oneDark };
+  return window._cm;
+};
+</script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js"></script>
