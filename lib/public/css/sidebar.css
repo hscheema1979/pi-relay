@@ -233,6 +233,173 @@
   height: 12px;
 }
 
+/* --- Machines Section --- */
+#machines-section {
+  padding: 0 4px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+#machines-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 8px 6px;
+}
+
+#machines-refresh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: transparent;
+  color: var(--text-dimmer);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+
+#machines-refresh:hover {
+  background: var(--sidebar-hover);
+  color: var(--text);
+}
+
+#machines-refresh .lucide {
+  width: 14px;
+  height: 14px;
+}
+
+#machines-refresh.scanning .lucide {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+#machines-list {
+  padding: 0 0 6px;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.machines-empty {
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--text-dimmer);
+  font-style: italic;
+}
+
+.machines-error {
+  padding: 8px 12px;
+  font-size: 11px;
+  color: var(--error);
+}
+
+.machine-item {
+  padding: 6px 8px;
+  border-radius: 6px;
+  margin: 0 4px 2px;
+}
+
+.machine-item:hover {
+  background: rgba(var(--overlay-rgb), 0.05);
+}
+
+.machine-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.machine-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.machine-status.online {
+  background: var(--success);
+}
+
+.machine-status.offline {
+  background: var(--text-dimmer);
+  opacity: 0.4;
+}
+
+.machine-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.machine-ip {
+  font-size: 10px;
+  color: var(--text-dimmer);
+  font-family: "SF Mono", Menlo, Monaco, monospace;
+}
+
+.machine-projects {
+  margin-left: 16px;
+  padding-left: 8px;
+  border-left: 2px solid var(--border-subtle);
+}
+
+.machine-project-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.machine-project-item:hover {
+  background: rgba(var(--overlay-rgb), 0.08);
+  color: var(--text);
+}
+
+.machine-project-item.already-added {
+  color: var(--text-dimmer);
+  cursor: default;
+}
+
+.machine-project-item.already-added:hover {
+  background: transparent;
+}
+
+.machine-project-slug {
+  flex: 1;
+}
+
+.machine-project-add {
+  font-size: 10px;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.machine-project-item:hover .machine-project-add {
+  opacity: 1;
+}
+
+.machine-project-item.already-added .machine-project-add {
+  opacity: 1;
+  color: var(--text-dimmer);
+}
+
 #sidebar-toggle-btn {
   width: 30px;
   height: 30px;
