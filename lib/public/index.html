@@ -32,6 +32,7 @@
       <div id="project-list-section">
         <div id="project-list-header">
           <span class="project-list-title">Projects</span>
+          <button id="project-list-collapse" type="button" title="Collapse projects"><i data-lucide="chevron-down"></i></button>
           <button id="project-list-add" type="button" title="Add project"><i data-lucide="plus"></i></button>
         </div>
         <div id="project-list"></div>
@@ -40,14 +41,9 @@
         <span class="project-hint-text">Run <code>npx pi-relay</code> in other directories to add more projects.</span>
         <button id="project-hint-dismiss" type="button" aria-label="Dismiss"><i data-lucide="x"></i></button>
       </div>
-      <div id="machines-section">
-        <div id="machines-header">
-          <span class="project-list-title">Machines</span>
-          <button id="machines-refresh" type="button" title="Scan network for pi-relay instances"><i data-lucide="refresh-cw"></i></button>
-        </div>
-        <div id="machines-list"></div>
-      </div>
+
     </nav>
+    <div class="sidebar-divider" data-divider="projects-tools"></div>
     <div id="sidebar-tools">
       <div class="sidebar-section-header">
         <span class="sidebar-section-title">Tools</span>
@@ -56,8 +52,10 @@
         <button id="resume-session-btn" title="Resume a CLI session"><i data-lucide="terminal"></i> <span>Resume CLI</span></button>
         <button id="file-browser-btn"><i data-lucide="folder-tree"></i> <span>File browser</span></button>
         <button id="terminal-sidebar-btn"><i data-lucide="square-terminal"></i> <span>Terminal</span></button>
+        <button id="teams-sidebar-btn"><i data-lucide="users"></i> <span>Teams</span></button>
       </div>
     </div>
+    <div class="sidebar-divider" data-divider="tools-sessions"></div>
     <div id="sidebar-sessions-header">
       <div id="sessions-header-content">
         <div class="session-list-header">
@@ -257,6 +255,18 @@
           <div class="usage-row"><span class="usage-label">Turns</span><span id="context-turns" class="usage-value">0</span></div>
         </div>
       </div>
+      <div id="teams-panel" class="hidden">
+        <div class="usage-panel-header">
+          <span>Teams</span>
+          <div class="usage-panel-actions">
+            <button id="teams-panel-refresh" aria-label="Refresh" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+            <button id="teams-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
+          </div>
+        </div>
+        <div id="teams-panel-body" class="teams-panel-body">
+          <div class="teams-loading">Loading teams...</div>
+        </div>
+      </div>
     </div>
     <div id="todo-sticky" class="hidden"></div>
     <button id="new-msg-btn" class="hidden" aria-label="Scroll to bottom"></button>
@@ -437,10 +447,22 @@
   <div class="confirm-backdrop"></div>
   <div class="confirm-dialog add-project-dialog">
     <div class="add-project-title">Add project</div>
+    <div class="add-project-tabs">
+      <button class="add-project-tab active" id="add-project-tab-local">This machine</button>
+      <button class="add-project-tab" id="add-project-tab-remote">Remote machine</button>
+    </div>
     <div class="add-project-body">
-      <div class="add-project-input-wrap">
-        <input type="text" id="add-project-input" placeholder="/" autocomplete="off" spellcheck="false">
-        <div id="add-project-suggestions" class="hidden"></div>
+      <div id="add-project-machine-picker" class="hidden">
+        <div class="add-project-machine-label">Select a machine</div>
+        <div id="add-project-machine-list"></div>
+        <div id="add-project-machine-loading" class="hidden">Scanning network...</div>
+      </div>
+      <div id="add-project-path-picker">
+        <div id="add-project-machine-badge" class="hidden"></div>
+        <div class="add-project-input-wrap">
+          <input type="text" id="add-project-input" placeholder="/" autocomplete="off" spellcheck="false">
+          <div id="add-project-suggestions" class="hidden"></div>
+        </div>
       </div>
       <div id="add-project-error" class="hidden"></div>
     </div>
@@ -450,6 +472,8 @@
     </div>
   </div>
 </div>
+
+
 
 <!-- Model Picker Modal -->
 <div id="model-picker-modal" class="hidden">

@@ -565,6 +565,10 @@
 #add-project-modal { position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; }
 #add-project-modal.hidden { display: none; }
 
+/* --- Remote add project modal --- */
+#remote-add-project-modal { position: fixed; inset: 0; z-index: 300; display: flex; align-items: center; justify-content: center; }
+#remote-add-project-modal.hidden { display: none; }
+
 .add-project-dialog { max-width: 420px; }
 
 .add-project-title {
@@ -728,4 +732,20 @@
   font-size: 13px;
   color: var(--text-dimmer);
 }
+
+/* Remote project error banner */
+.remote-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--warning-bg, rgba(255, 180, 0, 0.12));
+  border-bottom: 1px solid var(--warning-border, rgba(255, 180, 0, 0.25));
+  color: var(--warning-text, #e0a000);
+  font-size: 13px;
+  line-height: 1.4;
+}
+.remote-error-banner.hidden { display: none; }
+.remote-error-icon { font-size: 16px; flex-shrink: 0; }
+.remote-error-text { flex: 1; }
 
