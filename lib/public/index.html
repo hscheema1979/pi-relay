@@ -255,18 +255,6 @@
           <div class="usage-row"><span class="usage-label">Turns</span><span id="context-turns" class="usage-value">0</span></div>
         </div>
       </div>
-      <div id="teams-panel" class="hidden">
-        <div class="usage-panel-header">
-          <span>Teams</span>
-          <div class="usage-panel-actions">
-            <button id="teams-panel-refresh" aria-label="Refresh" title="Refresh"><i data-lucide="refresh-cw"></i></button>
-            <button id="teams-panel-close" aria-label="Close"><i data-lucide="x"></i></button>
-          </div>
-        </div>
-        <div id="teams-panel-body" class="teams-panel-body">
-          <div class="teams-loading">Loading teams...</div>
-        </div>
-      </div>
     </div>
     <div id="todo-sticky" class="hidden"></div>
     <button id="new-msg-btn" class="hidden" aria-label="Scroll to bottom"></button>
@@ -334,6 +322,16 @@
       <button class="term-key term-key-arrow" data-key="right">&#9654;</button>
     </div>
     <div id="terminal-body"></div>
+  </div>
+  <div id="teams-panel" class="hidden">
+    <div class="teams-panel-header">
+      <span>Teams</span>
+      <div class="teams-panel-actions">
+        <button id="teams-panel-refresh" class="file-viewer-btn" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+        <button id="teams-panel-close" class="file-viewer-btn" title="Close"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div id="teams-panel-body" class="teams-panel-body"></div>
   </div>
 </div>
 

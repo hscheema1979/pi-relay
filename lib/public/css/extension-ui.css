@@ -304,8 +304,58 @@
    Teams Panel
    ============================================================ */
 
+/* Wide screens: right side panel */
+@media (min-width: 1024px) {
+  #teams-panel {
+    width: 380px;
+    max-width: 480px;
+    min-width: 300px;
+    border-left: 1px solid var(--border);
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  #teams-panel.hidden { display: none; }
+}
+
+/* Narrow screens: full overlay */
+@media (max-width: 1023px) {
+  #teams-panel {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  #teams-panel.hidden { display: none; }
+}
+
+.teams-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  min-height: 44px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.teams-panel-actions {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
 .teams-panel-body {
-  max-height: 400px;
+  flex: 1;
   overflow-y: auto;
   padding: 8px 0;
 }
