@@ -1,14 +1,48 @@
 {
   "version": 1,
-  "status": "idle",
-  "pid": 0,
-  "plan": null,
+  "status": "active",
+  "pid": 2043478,
+  "plan": {
+    "id": "plan-1775189795849",
+    "text": "\n## Autonomous Work Components — Bug Fix Plan\n\n### Phase 1: Fix race condition in state management (lib/autonomous.js)\nConvert from file-based read-modify-write on every operation to in-memory state with periodic/event-driven flushing. Add a simple synchronous lock (since Node.js is single-threaded, the real issue is that multiple callers can interleave reads/writes during async gaps — but since all operations are actually synchronous fs calls, the real concern is concurrent writeState calls corrupting each other during atomic rename). \n\nActually, re-analyzing: since Node is single-threaded and all operations in autonomous.js are synchronous (readFileSync/writeFileSync), there's no true race condition within a single process. The race is between the periodic broadcast (project.js line 210) reading state while pi-bridge.js is writing it — but since both are synchronous in the same event loop, this can't actually interleave. \n\nThe REAL race condition is: the state file is read from disk on every operation instead of cached in memory. If the process writes a tmp file and renames, another process (daemon creating a separate autonomous manager for the same project on startup) could read stale data. The fix is to keep state in memory to avoid unnecessary disk I/O and make operations O(1) instead of O(n) JSON parses.\n\n**Changes:**\n- Cache state in memory, load from disk once on init\n- Write to disk on mutation (keep atomic write) but read from memory\n- Add periodic cleanup call\n\n### Phase 2: Fix redundant polling and add debouncing (lib/public/modules/autonomous.js)\n- Debounce `loadAutonomousSessions()` so rapid WS events don't cause multiple HTTP fetches\n- Remove immediate fetch from `startBgPolling()` when we just got WS data\n\n### Phase 3: Standardize WebSocket autonomous_update messages (lib/project.js + lib/pi-bridge.js)\n- Make project.js periodic broadcast send same format as pi-bridge.js (notify-only, no data payload — client fetches via HTTP)\n- OR: include data in all messages and use it client-side to avoid HTTP round-trip\n- Decision: go with notify-only approach since the HTTP endpoint merges fleet data that WS doesn't have\n\n### Phase 4: Fix session ID type mismatch for Watch button (lib/public/modules/autonomous.js)\n- Ensure switchToSession properly handles both numeric and string session IDs\n- Add validation for agent-fix sessions that don't map to relay sessions\n\n### Phase 5: Add startup cleanup call (lib/project.js)\n- Call `autonomous.cleanup()` when project context is created\n- This removes completed sessions older than 24h from disk\n\n### Phase 6: Fix fleet status TOCTOU in API endpoint (lib/project.js)\n- Remove fs.existsSync check, just read directly and handle errors\n- Add specific JSON parse error handling\n\n### Phase 7: Fix path encoding collision (lib/autonomous.js)\n- Use a safer encoding that's injective (e.g., encodeURIComponent or hex-encode slashes)\n- Keep backward compatibility by checking for old-format files\n",
+    "phases": [
+      {
+        "name": "Fix race condition: in-memory state caching in autonomous.js",
+        "status": "in_progress"
+      },
+      {
+        "name": "Fix redundant polling and add debouncing in client autonomous.js",
+        "status": "pending"
+      },
+      {
+        "name": "Standardize WebSocket autonomous_update messages",
+        "status": "pending"
+      },
+      {
+        "name": "Fix session ID type mismatch for Watch button",
+        "status": "pending"
+      },
+      {
+        "name": "Add startup cleanup call in project.js",
+        "status": "pending"
+      },
+      {
+        "name": "Fix fleet status TOCTOU in API endpoint",
+        "status": "pending"
+      },
+      {
+        "name": "Fix path encoding collision in autonomous.js",
+        "status": "pending"
+      }
+    ],
+    "currentPhase": 1
+  },
   "safetyCounters": {
     "continuations": 0,
     "maxContinuations": 10,
     "lastResponseTokens": 0
   },
   "lastCheckpoint": null,
-  "startedAt": null,
-  "updatedAt": "2026-04-02T22:30:00.000Z"
+  "startedAt": "2026-04-03T04:16:35.849Z",
+  "updatedAt": "2026-04-03T04:16:35.849Z"
 }
