@@ -10,3 +10,10 @@ yarn-error.log*
 .env.local
 .npm
 claude-relay-*.tar.gz
+
+# Runtime state
+.pi/
+
+# Local environment / IDE
+.claude/
+tts-venv/
