@@ -522,10 +522,13 @@
 
 /* --- Sidebar section headers --- */
 .sidebar-section-header {
+  display: flex;
+  align-items: center;
   padding: 8px 12px 4px;
 }
 
 .sidebar-section-title {
+  flex: 1;
   font-size: 11px;
   font-weight: 600;
   color: var(--text-dimmer);
@@ -537,6 +540,35 @@
 #sidebar-tools {
   flex-shrink: 0;
   padding-bottom: 4px;
+}
+
+/* Tools collapse toggle */
+#tools-collapse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  background: transparent;
+  color: var(--text-dimmer);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s, transform 0.2s;
+}
+#tools-collapse:hover {
+  background: var(--sidebar-hover);
+  color: var(--text);
+}
+#tools-collapse .lucide {
+  width: 14px;
+  height: 14px;
+}
+#sidebar-tools.collapsed #tools-collapse {
+  transform: rotate(-90deg);
+}
+#sidebar-tools.collapsed #session-actions {
+  display: none;
 }
 
 /* --- Sessions header (pinned above scroll) --- */
@@ -758,18 +790,17 @@
 .session-more-btn:hover { color: var(--text); background: rgba(var(--overlay-rgb), 0.06); }
 
 /* --- Session context menu --- */
+/* Positioned via JS as a body portal (position:fixed) to escape
+   #sidebar's overflow:hidden and sidebar DOM stacking order. */
 .session-ctx-menu {
-  position: absolute;
-  right: 8px;
-  top: 100%;
-  margin-top: 2px;
+  position: fixed;
   background: var(--bg-alt);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 4px 0;
   min-width: 140px;
   box-shadow: 0 4px 16px rgba(var(--shadow-rgb), 0.4);
-  z-index: 110;
+  z-index: 9999;
 }
 
 .session-ctx-item {

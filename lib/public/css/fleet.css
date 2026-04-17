@@ -1,0 +1,1037 @@
+/* ==========================================================================
+   Fleet Orchestration Panels — Shared Styles
+   Covers: Loops, Schedules, Tasks, Fleet Missions, Autoresearch, Hooks
+   ========================================================================== */
+
+/* --- Sidebar badges (count-based) --- */
+.fleet-badge {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  padding: 0 4px;
+  pointer-events: none;
+  display: none;
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Sidebar button states */
+#loops-sidebar-btn,
+#schedules-sidebar-btn,
+#tasks-sidebar-btn,
+#fleet-sidebar-btn,
+#autoresearch-sidebar-btn,
+#worktrees-sidebar-btn,
+#costs-sidebar-btn,
+#hooks-sidebar-btn {
+  position: relative;
+}
+
+.has-active .fleet-badge {
+  display: inline-block;
+  background: var(--accent);
+  animation: fleet-pulse 2s ease-in-out infinite;
+}
+
+.has-warning .fleet-badge {
+  display: inline-block;
+  background: var(--warning, #e0a000);
+  animation: none;
+}
+
+.has-error .fleet-badge {
+  display: inline-block;
+  background: var(--error);
+  animation: none;
+}
+
+@keyframes fleet-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* --- Panel layout (matches autonomous/teams panels) --- */
+
+@media (min-width: 1024px) {
+  #loops-panel,
+  #schedules-panel,
+  #tasks-panel {
+    width: 400px;
+    max-width: 500px;
+    min-width: 320px;
+    border-left: 1px solid var(--border);
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  #loops-panel.hidden,
+  #schedules-panel.hidden,
+  #tasks-panel.hidden {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  #loops-panel,
+  #schedules-panel,
+  #tasks-panel {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  #loops-panel.hidden,
+  #schedules-panel.hidden,
+  #tasks-panel.hidden {
+    display: none;
+  }
+}
+
+/* --- Panel header --- */
+.fleet-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.fleet-panel-header span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fleet-panel-actions {
+  display: flex;
+  gap: 4px;
+}
+
+/* --- Panel body --- */
+.fleet-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+/* --- Shared components --- */
+
+.fleet-empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.fleet-empty-hint {
+  margin-top: 8px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.fleet-section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 4px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.fleet-status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* --- Cards --- */
+.fleet-card {
+  background: var(--surface, var(--bg-secondary, rgba(128,128,128,0.06)));
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  font-size: 12px;
+}
+
+.fleet-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.fleet-card-title {
+  flex: 1;
+  font-weight: 500;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fleet-card-meta {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.fleet-card-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.fleet-card-stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.fleet-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+/* --- Streaming output --- */
+.fleet-stream {
+  background: var(--bg-secondary, rgba(0,0,0,0.15));
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  line-height: 1.4;
+  max-height: 120px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 6px 0;
+  color: var(--text-muted);
+}
+
+/* --- Create form --- */
+.fleet-create-form {
+  padding: 8px 4px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.fleet-create-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.fleet-create-options {
+  flex-wrap: wrap;
+}
+
+.fleet-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-secondary, rgba(128,128,128,0.1));
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--text);
+  outline: none;
+}
+
+.fleet-input:focus {
+  border-color: var(--accent);
+}
+
+.fleet-input-sm {
+  max-width: 90px;
+}
+
+.fleet-select {
+  background: var(--bg-secondary, rgba(128,128,128,0.1));
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 11px;
+  color: var(--text);
+  outline: none;
+  cursor: pointer;
+}
+
+/* --- Buttons --- */
+.fleet-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 11px;
+  cursor: pointer;
+  background: var(--bg-secondary, rgba(128,128,128,0.1));
+  color: var(--text);
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.fleet-btn:hover {
+  background: var(--bg-hover, rgba(128,128,128,0.2));
+}
+
+.fleet-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+.fleet-btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.fleet-btn-primary:hover {
+  opacity: 0.85;
+}
+
+.fleet-btn-danger {
+  color: var(--error);
+  border-color: var(--error);
+}
+
+.fleet-btn-danger:hover {
+  background: var(--error);
+  color: var(--bg);
+}
+
+.fleet-btn-sm {
+  padding: 2px 8px;
+  font-size: 10px;
+}
+
+/* --- Cron badge --- */
+.fleet-cron-badge {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--bg-secondary, rgba(128,128,128,0.15));
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* --- Countdown --- */
+.fleet-countdown {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Run history --- */
+.fleet-run-history {
+  margin: 4px 0;
+}
+
+.fleet-run-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 4px;
+  font-size: 10px;
+  border-radius: 3px;
+}
+
+.fleet-run-ok {
+  color: var(--success, #22c55e);
+}
+
+.fleet-run-fail {
+  color: var(--error);
+}
+
+/* --- Summary bar (tasks) --- */
+.fleet-summary-bar {
+  display: flex;
+  gap: 12px;
+  padding: 8px 4px;
+  font-size: 11px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 6px;
+}
+
+.fleet-summary-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+}
+
+/* --- Task-specific --- */
+.task-card {
+  position: relative;
+  padding-left: 16px;
+}
+
+.task-priority-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 8px 0 0 8px;
+}
+
+.task-priority-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.task-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.task-tag {
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--bg);
+  opacity: 0.8;
+}
+
+/* --- Fleet missions + hooks panel layout --- */
+@media (min-width: 1024px) {
+  #fleet-panel,
+  #autoresearch-panel,
+  #machines-panel,
+  #hooks-panel {
+    width: 400px;
+    max-width: 500px;
+    min-width: 320px;
+    border-left: 1px solid var(--border);
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  #fleet-panel.hidden,
+  #autoresearch-panel.hidden,
+  #machines-panel.hidden,
+  #hooks-panel.hidden {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  #fleet-panel,
+  #autoresearch-panel,
+  #machines-panel,
+  #hooks-panel {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  #fleet-panel.hidden,
+  #autoresearch-panel.hidden,
+  #machines-panel.hidden,
+  #hooks-panel.hidden {
+    display: none;
+  }
+}
+
+/* --- Fleet missions --- */
+.fleet-missions-list {
+  margin: 6px 0;
+}
+
+.fleet-mission-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 4px;
+  font-size: 11px;
+}
+
+.fleet-mission-name {
+  font-weight: 500;
+}
+
+.fleet-mission-deps {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.fleet-report {
+  margin: 6px 0;
+}
+
+.fleet-report-header {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.fleet-mission-card {
+  border-left: 3px solid var(--accent);
+}
+
+/* --- Autoresearch mode badge --- */
+.ar-mode-badge {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--bg-secondary, rgba(128,128,128,0.15));
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* --- Machine panel --- */
+.machine-card {
+  border-left: 3px solid var(--success, #22c55e);
+}
+
+.machine-hostname {
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+.machine-details {
+  margin: 6px 0;
+}
+
+.machine-detail-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+  font-size: 11px;
+}
+
+.machine-label {
+  color: var(--text-muted);
+  min-width: 36px;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.machine-value {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+}
+
+.machine-caps {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+
+.machine-cap-tag {
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--bg-secondary, rgba(128,128,128,0.15));
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.machine-projects {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+  font-size: 11px;
+}
+
+.machine-project-tag {
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--bg);
+  opacity: 0.7;
+}
+
+/* --- Hooks panel --- */
+.hook-event-badge {
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--bg-secondary, rgba(128,128,128,0.15));
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.hook-command {
+  margin: 4px 0;
+  padding: 4px 8px;
+  background: var(--bg-secondary, rgba(0,0,0,0.1));
+  border-radius: 4px;
+  font-size: 11px;
+  overflow-x: auto;
+}
+
+.hook-command code {
+  font-family: var(--font-mono, monospace);
+}
+
+.hook-presets {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 4px;
+  margin-bottom: 8px;
+}
+
+.hook-preset-btn {
+  background: var(--bg-secondary, rgba(128,128,128,0.1));
+  border: 1px dashed var(--border);
+}
+
+/* --- Textarea in create forms --- */
+.fleet-create-form textarea.fleet-input {
+  resize: vertical;
+  min-height: 48px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Cost Panel
+   ========================================================================== */
+
+.cost-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px;
+}
+
+.cost-summary-card {
+  background: var(--bg-secondary, rgba(128,128,128,0.08));
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.cost-summary-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--font-mono, monospace);
+}
+
+.cost-summary-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 2px;
+}
+
+/* Cost table (model/operation breakdown) */
+.cost-table {
+  padding: 0 8px 8px;
+}
+
+.cost-table-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 8px;
+  padding: 5px 8px;
+  align-items: center;
+  border-bottom: 1px solid var(--border-faint, rgba(128,128,128,0.08));
+}
+
+.cost-table-row:last-child {
+  border-bottom: none;
+}
+
+.cost-table-header {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-dimmer);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.cost-col-model {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.cost-col-model code {
+  font-size: 11px;
+  font-family: var(--font-mono, monospace);
+}
+
+.cost-col-num {
+  text-align: right;
+  font-size: 12px;
+  font-family: var(--font-mono, monospace);
+  white-space: nowrap;
+}
+
+/* Recent cost entries */
+.cost-recent-entry {
+  display: flex;
+  gap: 8px;
+  padding: 4px 8px;
+  font-size: 11px;
+  align-items: center;
+  border-bottom: 1px solid var(--border-faint, rgba(128,128,128,0.05));
+}
+
+.cost-recent-entry:last-child {
+  border-bottom: none;
+}
+
+.cost-recent-type {
+  background: var(--bg-secondary, rgba(128,128,128,0.1));
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.cost-recent-model code {
+  font-size: 10px;
+  font-family: var(--font-mono, monospace);
+  color: var(--text-muted);
+}
+
+.cost-recent-cost {
+  margin-left: auto;
+  font-family: var(--font-mono, monospace);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cost-recent-time {
+  color: var(--text-dimmer);
+  white-space: nowrap;
+  min-width: 50px;
+  text-align: right;
+}
+
+/* ==========================================================================
+   Cost Panel
+   ========================================================================== */
+
+.cost-summary {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.cost-summary-card {
+  flex: 1;
+  background: var(--bg-secondary, rgba(255,255,255,0.04));
+  border-radius: 6px;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.cost-summary-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text, #e0ddd4);
+  line-height: 1.2;
+}
+
+.cost-summary-label {
+  font-size: 10px;
+  color: var(--text-muted, #8a8780);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cost-table {
+  margin-bottom: 12px;
+}
+
+.cost-table-row {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.06));
+}
+
+.cost-table-row.cost-table-header {
+  font-weight: 500;
+  color: var(--text-muted, #8a8780);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.1));
+}
+
+.cost-col-model {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cost-col-model code {
+  font-size: 11px;
+}
+
+.cost-col-num {
+  width: 70px;
+  text-align: right;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.cost-recent-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  font-size: 11px;
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.04));
+}
+
+.cost-recent-type {
+  width: 60px;
+  flex-shrink: 0;
+  font-weight: 500;
+  color: var(--text, #e0ddd4);
+}
+
+.cost-recent-model {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cost-recent-model code {
+  font-size: 10px;
+  color: var(--text-muted, #8a8780);
+}
+
+.cost-recent-cost {
+  width: 60px;
+  text-align: right;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent, #7c9cff);
+}
+
+.cost-recent-time {
+  width: 50px;
+  text-align: right;
+  flex-shrink: 0;
+  color: var(--text-muted, #8a8780);
+}
+
+/* Worktree-specific */
+.fleet-state-label {
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+  color: var(--text-muted, #8a8780);
+}
+
+/* --- Cost Panel: Grid, Breakdown, Timeline --- */
+
+.cost-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.cost-summary-icon {
+  color: var(--text-muted, #8a8780);
+  margin-bottom: 4px;
+}
+
+.cost-breakdown-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.04));
+}
+
+.cost-breakdown-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text, #e0ddd4);
+}
+
+.cost-breakdown-label code {
+  font-size: 11px;
+}
+
+.cost-breakdown-stats {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.cost-breakdown-stats span {
+  font-size: 11px;
+  color: var(--text-muted, #8a8780);
+  min-width: 50px;
+  text-align: right;
+}
+
+.cost-breakdown-stats span:first-child {
+  color: var(--accent, #7c9cff);
+}
+
+/* Collapsible time group headers */
+.cost-time-group {
+  margin-bottom: 2px;
+}
+
+.cost-time-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 8px;
+  background: var(--bg-secondary, rgba(255,255,255,0.03));
+  border: none;
+  border-radius: 4px;
+  color: var(--text, #e0ddd4);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.cost-time-header:hover {
+  background: var(--bg-secondary, rgba(255,255,255,0.06));
+}
+
+.cost-time-count {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-muted, #8a8780);
+  font-weight: 400;
+}
+
+.cost-time-entries {
+  padding-left: 4px;
+}
+
+/* Individual cost entry rows */
+.cost-entry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 8px;
+  font-size: 11px;
+  border-bottom: 1px solid var(--border, rgba(255,255,255,0.03));
+}
+
+.cost-entry-time {
+  width: 42px;
+  flex-shrink: 0;
+  color: var(--text-dimmer, #6a6760);
+  font-variant-numeric: tabular-nums;
+}
+
+.cost-entry-op {
+  width: 60px;
+  flex-shrink: 0;
+  font-weight: 500;
+  color: var(--text, #e0ddd4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cost-entry-model {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cost-entry-model code {
+  font-size: 10px;
+  color: var(--text-muted, #8a8780);
+}
+
+.cost-entry-cost {
+  width: 60px;
+  text-align: right;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent, #7c9cff);
+}
+
+.cost-entry-dur {
+  width: 44px;
+  text-align: right;
+  flex-shrink: 0;
+  font-size: 10px;
+  color: var(--text-dimmer, #6a6760);
+}
+
+/* Responsive: stack summary cards on narrow panels */
+@media (max-width: 500px) {
+  .cost-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

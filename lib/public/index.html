@@ -47,6 +47,7 @@
     <div id="sidebar-tools">
       <div class="sidebar-section-header">
         <span class="sidebar-section-title">Tools</span>
+        <button id="tools-collapse" type="button" title="Collapse tools"><i data-lucide="chevron-down"></i></button>
       </div>
       <div id="session-actions">
         <button id="resume-session-btn" title="Resume a CLI session"><i data-lucide="terminal"></i> <span>Resume CLI</span></button>
@@ -54,6 +55,15 @@
         <button id="terminal-sidebar-btn"><i data-lucide="square-terminal"></i> <span>Terminal</span></button>
         <button id="teams-sidebar-btn"><i data-lucide="users"></i> <span>Teams</span></button>
         <button id="autonomous-sidebar-btn"><i data-lucide="bot"></i> <span>Autonomous</span></button>
+        <button id="loops-sidebar-btn"><i data-lucide="refresh-cw"></i> <span>Loops</span></button>
+        <button id="schedules-sidebar-btn"><i data-lucide="calendar-clock"></i> <span>Schedules</span></button>
+        <button id="tasks-sidebar-btn"><i data-lucide="list-checks"></i> <span>Tasks</span></button>
+        <button id="fleet-sidebar-btn"><i data-lucide="network"></i> <span>Fleet</span></button>
+        <button id="autoresearch-sidebar-btn"><i data-lucide="microscope"></i> <span>Research</span></button>
+        <button id="worktrees-sidebar-btn"><i data-lucide="git-branch"></i> <span>Worktrees</span></button>
+        <button id="machines-sidebar-btn"><i data-lucide="server"></i> <span>Machines</span></button>
+        <button id="hooks-sidebar-btn"><i data-lucide="webhook"></i> <span>Hooks</span></button>
+        <button id="costs-sidebar-btn"><i data-lucide="receipt"></i> <span>Costs</span></button>
       </div>
     </div>
     <div class="sidebar-divider" data-divider="tools-sessions"></div>
@@ -343,6 +353,114 @@
       </div>
     </div>
     <div id="autonomous-panel-body" class="autonomous-panel-body"></div>
+  </div>
+
+  <!-- Fleet: Loops Panel -->
+  <div id="loops-panel" class="hidden">
+    <div class="fleet-panel-header">
+      <span><i data-lucide="refresh-cw" style="width:14px;height:14px"></i> Loops</span>
+      <div class="fleet-panel-actions">
+        <button id="loops-panel-refresh" class="file-viewer-btn" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+        <button id="loops-panel-close" class="file-viewer-btn" title="Close"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div id="loops-panel-body" class="fleet-panel-body"></div>
+  </div>
+
+  <!-- Fleet: Schedules Panel -->
+  <div id="schedules-panel" class="hidden">
+    <div class="fleet-panel-header">
+      <span><i data-lucide="calendar-clock" style="width:14px;height:14px"></i> Schedules</span>
+      <div class="fleet-panel-actions">
+        <button id="schedules-panel-refresh" class="file-viewer-btn" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+        <button id="schedules-panel-close" class="file-viewer-btn" title="Close"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div id="schedules-panel-body" class="fleet-panel-body"></div>
+  </div>
+
+  <!-- Fleet: Tasks Panel -->
+  <div id="tasks-panel" class="hidden">
+    <div class="fleet-panel-header">
+      <span><i data-lucide="list-checks" style="width:14px;height:14px"></i> Tasks</span>
+      <div class="fleet-panel-actions">
+        <button id="tasks-panel-refresh" class="file-viewer-btn" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+        <button id="tasks-panel-close" class="file-viewer-btn" title="Close"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div id="tasks-panel-body" class="fleet-panel-body"></div>
+  </div>
+
+  <!-- Fleet: Missions Panel -->
+  <div id="fleet-panel" class="hidden">
+    <div class="fleet-panel-header">
+      <span><i data-lucide="network" style="width:14px;height:14px"></i> Fleet Missions</span>
+      <div class="fleet-panel-actions">
+        <button id="fleet-panel-refresh" class="file-viewer-btn" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+        <button id="fleet-panel-close" class="file-viewer-btn" title="Close"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div id="fleet-panel-body" class="fleet-panel-body"></div>
+  </div>
+
+  <!-- Fleet: Autoresearch Panel -->
+  <div id="autoresearch-panel" class="hidden">
+    <div class="fleet-panel-header">
+      <span><i data-lucide="microscope" style="width:14px;height:14px"></i> Autoresearch</span>
+      <div class="fleet-panel-actions">
+        <button id="autoresearch-panel-refresh" class="file-viewer-btn" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+        <button id="autoresearch-panel-close" class="file-viewer-btn" title="Close"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div id="autoresearch-panel-body" class="fleet-panel-body"></div>
+  </div>
+
+  <!-- Fleet: Machines Panel -->
+  <div id="machines-panel" class="hidden">
+    <div class="fleet-panel-header">
+      <span><i data-lucide="server" style="width:14px;height:14px"></i> Machines</span>
+      <div class="fleet-panel-actions">
+        <button id="machines-panel-refresh" class="file-viewer-btn" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+        <button id="machines-panel-close" class="file-viewer-btn" title="Close"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div id="machines-panel-body" class="fleet-panel-body"></div>
+  </div>
+
+  <!-- Fleet: Worktrees Panel -->
+  <div id="worktrees-panel" class="hidden">
+    <div class="fleet-panel-header">
+      <span><i data-lucide="git-branch" style="width:14px;height:14px"></i> Worktrees</span>
+      <div class="fleet-panel-actions">
+        <button id="worktrees-panel-refresh" class="file-viewer-btn" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+        <button id="worktrees-panel-close" class="file-viewer-btn" title="Close"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div id="worktrees-panel-body" class="fleet-panel-body"></div>
+  </div>
+
+  <!-- Fleet: Hooks Panel -->
+  <div id="hooks-panel" class="hidden">
+    <div class="fleet-panel-header">
+      <span><i data-lucide="webhook" style="width:14px;height:14px"></i> Hooks</span>
+      <div class="fleet-panel-actions">
+        <button id="hooks-panel-refresh" class="file-viewer-btn" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+        <button id="hooks-panel-close" class="file-viewer-btn" title="Close"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div id="hooks-panel-body" class="fleet-panel-body"></div>
+  </div>
+
+  <!-- Fleet: Costs Panel -->
+  <div id="costs-panel" class="hidden">
+    <div class="fleet-panel-header">
+      <span><i data-lucide="receipt" style="width:14px;height:14px"></i> Costs</span>
+      <div class="fleet-panel-actions">
+        <button id="costs-panel-refresh" class="file-viewer-btn" title="Refresh"><i data-lucide="refresh-cw"></i></button>
+        <button id="costs-panel-close" class="file-viewer-btn" title="Close"><i data-lucide="x"></i></button>
+      </div>
+    </div>
+    <div id="costs-panel-body" class="fleet-panel-body"></div>
   </div>
 </div>
 
