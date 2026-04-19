@@ -17,3 +17,10 @@ claude-relay-*.tar.gz
 # Local environment / IDE
 .claude/
 tts-venv/
+
+# Playwright / test artifacts
+.playwright-mcp/
+test-results/
+playwright-report/
+# Ignore loose PNGs at repo root (test screenshots); keep tracked UI assets under lib/public/
+/*.png
