@@ -431,7 +431,9 @@
   #fleet-panel,
   #autoresearch-panel,
   #machines-panel,
-  #hooks-panel {
+  #hooks-panel,
+  #worktrees-panel,
+  #costs-panel {
     width: 400px;
     max-width: 500px;
     min-width: 320px;
@@ -445,7 +447,9 @@
   #fleet-panel.hidden,
   #autoresearch-panel.hidden,
   #machines-panel.hidden,
-  #hooks-panel.hidden {
+  #hooks-panel.hidden,
+  #worktrees-panel.hidden,
+  #costs-panel.hidden {
     display: none;
   }
 }
@@ -454,7 +458,9 @@
   #fleet-panel,
   #autoresearch-panel,
   #machines-panel,
-  #hooks-panel {
+  #hooks-panel,
+  #worktrees-panel,
+  #costs-panel {
     position: fixed;
     inset: 0;
     background: var(--bg);
@@ -466,7 +472,9 @@
   #fleet-panel.hidden,
   #autoresearch-panel.hidden,
   #machines-panel.hidden,
-  #hooks-panel.hidden {
+  #hooks-panel.hidden,
+  #worktrees-panel.hidden,
+  #costs-panel.hidden {
     display: none;
   }
 }
